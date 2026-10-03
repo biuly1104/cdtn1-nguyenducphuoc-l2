@@ -34,9 +34,9 @@ viên, lịch hẹn, kho linh kiện, sửa chữa, thanh toán, CSAT/NPS và AI
 
 ## 2. User Story và GWT
 
-Tất cả 7 story là **MUST**.
+Các User Story được ưu tiên theo MoSCoW: **2 MUST, 4 SHOULD và 2 COULD**.
 
-### US01 -- Tra cứu khách hàng
+### US01 -- Tra cứu khách hàng [MUST]
 
 Là nhân viên tiếp nhận, tôi muốn tra cứu khách hàng bằng số điện thoại
 để xác định đúng khách hàng. - Given số điện thoại hợp lệ và tồn tại,
@@ -45,7 +45,7 @@ hợp lệ nhưng chưa tồn tại, When bấm Tra cứu, Then thông báo chư
 thấy và cho phép tạo mới. - **Ngoại lệ:** Given số điện thoại trống/sai
 định dạng, When bấm Tra cứu, Then không tra cứu và hiển thị lỗi.
 
-### US02 -- Tạo khách hàng mới
+### US02 -- Tạo khách hàng mới [COULD]
 
 Là nhân viên tiếp nhận, tôi muốn tạo khách hàng mới khi chưa tồn tại để
 tiếp tục tiếp nhận bảo hành. - Given số điện thoại chưa tồn tại và dữ
@@ -53,36 +53,35 @@ liệu hợp lệ, When lưu, Then tạo khách hàng và gắn vào yêu cầu 
 tại. - **Ngoại lệ:** Given số điện thoại đã tồn tại, When lưu, Then từ
 chối tạo trùng.
 
-### US03 -- Ghi nhận thiết bị
-
+### US03 -- Ghi nhận thiết bị [SHOULD]
 Là nhân viên tiếp nhận, tôi muốn ghi nhận thiết bị để xác định thiết bị
 cần bảo hành. - Given đã xác định khách hàng, When nhập tên, loại và
 serial hợp lệ, Then ghi nhận thiết bị gắn với khách hàng. - **Ngoại
 lệ:** Given thiếu dữ liệu thiết bị bắt buộc, When tiếp tục, Then hiển
 thị lỗi.
 
-### US04 -- Ghi nhận mô tả lỗi
+### US04 -- Ghi nhận mô tả lỗi [SHOULD]
 
 Là nhân viên tiếp nhận, tôi muốn ghi nhận mô tả lỗi để lưu tình trạng
 thiết bị. - Given đã có thiết bị, When nhập mô tả hợp lệ, Then lưu mô tả
 vào phiếu. - **Ngoại lệ:** Given mô tả trống, When tạo phiếu, Then yêu
 cầu nhập mô tả.
 
-### US05 -- Phân loại nhóm sự cố
+### US05 -- Phân loại nhóm sự cố [SHOULD]
 
 Là nhân viên tiếp nhận, tôi muốn chọn nhóm sự cố để phân loại thống
 nhất. - Given danh mục sự cố hoạt động, When chọn một nhóm, Then lưu
 nhóm cho phiếu. - **Ngoại lệ:** Given chưa chọn nhóm, When tạo phiếu,
 Then từ chối và yêu cầu chọn nhóm.
 
-### US06 -- Xác định mức ưu tiên
+### US06 -- Xác định mức ưu tiên [SHOULD]
 
 Là nhân viên tiếp nhận, tôi muốn xác định mức ưu tiên để hỗ trợ thứ tự
 xử lý. - Given yêu cầu đang nhập, When chọn Thấp/Trung bình/Cao, Then
 lưu đúng mức ưu tiên. - **Ngoại lệ:** Given chưa chọn ưu tiên, When tạo
 phiếu, Then yêu cầu chọn.
 
-### US07 -- Tạo và xem phiếu
+### US07 -- Tạo và xem phiếu [MUST]
 
 Là nhân viên tiếp nhận, tôi muốn tạo và xem lại phiếu để bảo đảm yêu cầu
 được lưu đầy đủ. - Given dữ liệu bắt buộc hợp lệ, When bấm Tạo phiếu,
@@ -92,7 +91,14 @@ thiết bị, lỗi, nhóm, ưu tiên và trạng thái. - **Ngoại lệ:** Giv
 thất bại, When hệ thống không thể tạo phiếu, Then báo lỗi và không báo
 thành công.
 
-**Tổng:** 7 story \| 7 MUST \| 15 tiêu chí GWT \| 7 ngoại lệ.
+### US08 -- Xem danh sách phiếu bảo hành [COULD]
+
+Là nhân viên tiếp nhận, tôi muốn xem danh sách phiếu bảo hành để tra cứu các yêu cầu đã được tiếp nhận.
+
+- Given hệ thống đã có phiếu bảo hành, When mở danh sách phiếu, Then hiển thị mã phiếu, khách hàng, thiết bị, nhóm sự cố, mức ưu tiên và trạng thái.
+- **Ngoại lệ:** Given hệ thống chưa có phiếu bảo hành, When mở danh sách phiếu, Then hiển thị danh sách trống và không phát sinh lỗi.
+
+**Tổng:** 8 story | 2 MUST | 4 SHOULD | 2 COULD | 17 tiêu chí GWT | 8 ngoại lệ.
 
 ## 3. Use Case
 
@@ -110,8 +116,12 @@ nhập mô tả lỗi; (4) chọn nhóm sự cố; (5) chọn ưu tiên; (6) b�
 phiếu; (7) hệ thống validate; (8) sinh mã phiếu; (9) lưu phiếu/thời
 gian; (10) tạo trạng thái `Mới tiếp nhận`; (11) hiển thị thành công và
 chi tiết phiếu.\
-**Ngoại lệ:** E1 thiếu mô tả; E2 thiếu nhóm sự cố; E3 thiếu ưu tiên; E4
-thiết bị không hợp lệ; E5 lỗi lưu dữ liệu.\
+**Ngoại lệ:**
+- **E3.1 – Tại bước 3:** Nếu thiếu mô tả lỗi, hệ thống hiển thị lỗi và yêu cầu nhập mô tả.
+- **E4.1 – Tại bước 4:** Nếu chưa chọn nhóm sự cố, hệ thống hiển thị lỗi và yêu cầu chọn nhóm.
+- **E5.1 – Tại bước 5:** Nếu chưa chọn mức ưu tiên, hệ thống hiển thị lỗi và yêu cầu chọn mức ưu tiên.
+- **E7.1 – Tại bước 7:** Nếu thiết bị không hợp lệ, hệ thống từ chối tạo phiếu và yêu cầu kiểm tra lại thông tin thiết bị.
+- **E9.1 – Tại bước 9:** Nếu xảy ra lỗi khi lưu dữ liệu, hệ thống thông báo tạo phiếu thất bại và không hiển thị thông báo thành công.
 **Hậu điều kiện:** Phiếu hợp lệ tồn tại với mã duy nhất và trạng thái
 `Mới tiếp nhận`.
 
@@ -148,17 +158,18 @@ Thực thể: `customer`, `device`, `issue_category`, `ticket`,
 ghi.
 
 ## 6. Bảng truy vết yêu cầu
-| Requirement | User Story | Use Case | Dữ liệu/Thiết kế | Test |
-| --- | --- | --- | --- | --- |
-| FR01 | US01 | UC01 | customer.phone | TC01–TC02 |
-| FR02 | US02 | UC02 | customer | TC03–TC04 |
-| FR03 | US03 | UC03 | device.customer_id | TC05 |
-| FR04 | US04 | UC04, UC06 | ticket.description | TC06–TC07 |
-| FR05 | US05 | UC05, UC06 | issue_category | TC08 |
-| FR06 | US06 | UC05, UC06 | ticket.priority | TC09 |
-| FR07 | US03–US07 | UC06 | validation | TC10 |
-| FR08 | US07 | UC06 | ticket.ticket_code | TC11 |
-| FR09 | US07 | UC06 | ticket_status_log | TC12 |
-| FR10 | US07 | UC07 | ticket + quan hệ | TC13 |
+| Requirement | User Story | Use Case | MoSCoW | Dữ liệu/Thiết kế | Test |
+| --- | --- | --- | --- | --- | --- |
+| FR01 | US01 | UC01 | MUST | customer.phone | TC01–TC02 |
+| FR02 | US02 | UC02 | COULD | customer | TC03–TC04 |
+| FR03 | US03 | UC03 | SHOULD | device.customer_id | TC05 |
+| FR04 | US04 | UC04, UC06 | SHOULD | ticket.description | TC06–TC07 |
+| FR05 | US05 | UC05, UC06 | SHOULD | issue_category | TC08 |
+| FR06 | US06 | UC05, UC06 | SHOULD | ticket.priority | TC09 |
+| FR07 | US03–US07 | UC06 | SHOULD/MUST | validation | TC10 |
+| FR08 | US07 | UC06 | MUST | ticket.ticket_code | TC11 |
+| FR09 | US07 | UC06 | MUST | ticket_status_log | TC12 |
+| FR10 | US07, US08 | UC07 | MUST/COULD | ticket + quan hệ | TC13 |
+
 **Ô truy vết còn trống: 0.**
 
