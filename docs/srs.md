@@ -15,6 +15,23 @@ Trong phạm vi: tra cứu/tạo khách hàng, ghi nhận thiết bị, mô tả
 nhóm sự cố, ưu tiên, tạo và xem phiếu. Ngoài phạm vi: phân công kỹ thuật
 viên, lịch hẹn, kho linh kiện, sửa chữa, thanh toán, CSAT/NPS và AI.
 
+### Bảng thuật ngữ
+
+| Thuật ngữ | Giải thích |
+| --- | --- |
+| CRM | Customer Relationship Management – hệ thống quản lý quan hệ khách hàng. |
+| Khách hàng | Người mang thiết bị đến yêu cầu tiếp nhận bảo hành. |
+| Nhân viên tiếp nhận | Người sử dụng hệ thống để tra cứu khách hàng, ghi nhận thiết bị, phân loại yêu cầu và tạo phiếu bảo hành. |
+| Thiết bị | Sản phẩm của khách hàng được tiếp nhận để kiểm tra hoặc bảo hành. |
+| Phiếu bảo hành | Bản ghi lưu thông tin khách hàng, thiết bị, lỗi, nhóm sự cố, mức ưu tiên và trạng thái xử lý. |
+| Nhóm sự cố | Nhóm dùng để phân loại lỗi của thiết bị như màn hình, pin, sạc, camera, âm thanh, kết nối, phần mềm hoặc phần cứng khác. |
+| Mức ưu tiên | Mức độ ưu tiên xử lý yêu cầu, gồm Thấp, Trung bình và Cao. |
+| Mới tiếp nhận | Trạng thái ban đầu được hệ thống gán cho phiếu bảo hành sau khi tạo thành công. |
+| GWT | Given – When – Then, cấu trúc dùng để mô tả tiêu chí chấp nhận của User Story. |
+| FR | Functional Requirement – yêu cầu chức năng. |
+| NFR | Non-Functional Requirement – yêu cầu phi chức năng. |
+| API | Application Programming Interface – giao diện để frontend và backend trao đổi dữ liệu. |
+
 ## 2. User Story và GWT
 
 Tất cả 7 story là **MUST**.
@@ -124,12 +141,13 @@ thiết bị không hợp lệ; E5 lỗi lưu dữ liệu.\
 -   **NFR05:** Lỗi validation hiển thị ≤ 1 giây sau khi nhận response.
 -   **NFR06:** Giao diện nghiệm thu trên Chrome ở độ rộng ≥ 1366 px.
 
-## 5. Dữ liệu và truy vết
+## 5. Dữ liệu 
 
 Thực thể: `customer`, `device`, `issue_category`, `ticket`,
 `ticket_status_log`. Dữ liệu thử nghiệm sinh mô phỏng khoảng 100 bản
 ghi.
 
+## 6. Bảng truy vết yêu cầu
 | Requirement | User Story | Use Case | Dữ liệu/Thiết kế | Test |
 | --- | --- | --- | --- | --- |
 | FR01 | US01 | UC01 | customer.phone | TC01–TC02 |
@@ -144,15 +162,3 @@ ghi.
 | FR10 | US07 | UC07 | ticket + quan hệ | TC13 |
 **Ô truy vết còn trống: 0.**
 
-## 6. Track SE -- API Contract
-
--   `GET /api/customers?phone={phone}` -- tra cứu khách hàng.
--   `POST /api/customers` -- tạo khách hàng.
--   `POST /api/devices` -- ghi nhận thiết bị.
--   `GET /api/issue-categories` -- lấy nhóm sự cố.
--   `POST /api/tickets` -- tạo phiếu.
--   `GET /api/tickets` -- danh sách phiếu.
--   `GET /api/tickets/{ticketCode}` -- chi tiết phiếu.
-
-HTTP: 200 đọc thành công; 201 tạo thành công; 400 dữ liệu sai; 404 không
-tìm thấy; 409 xung đột dữ liệu; 500 lỗi server.
