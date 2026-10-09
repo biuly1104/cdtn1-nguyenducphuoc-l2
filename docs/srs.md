@@ -34,7 +34,7 @@ viên, lịch hẹn, kho linh kiện, sửa chữa, thanh toán, CSAT/NPS và AI
 
 ## 2. User Story và GWT
 
-Các User Story được ưu tiên theo MoSCoW: **2 MUST, 4 SHOULD và 2 COULD**.
+Các User Story được ưu tiên theo MoSCoW: **2 MUST, 4 SHOULD và 1 COULD**.
 
 ### US01 -- Tra cứu khách hàng [MUST]
 
@@ -83,22 +83,16 @@ phiếu, Then yêu cầu chọn.
 
 ### US07 -- Tạo và xem phiếu [MUST]
 
-Là nhân viên tiếp nhận, tôi muốn tạo và xem lại phiếu để bảo đảm yêu cầu
-được lưu đầy đủ. - Given dữ liệu bắt buộc hợp lệ, When bấm Tạo phiếu,
-Then sinh mã duy nhất, lưu thời gian và trạng thái `Mới tiếp nhận`. -
-Given phiếu đã tạo, When mở chi tiết, Then hiển thị đầy đủ khách hàng,
-thiết bị, lỗi, nhóm, ưu tiên và trạng thái. - **Ngoại lệ:** Given lưu
-thất bại, When hệ thống không thể tạo phiếu, Then báo lỗi và không báo
-thành công.
+Là nhân viên tiếp nhận, tôi muốn tạo phiếu bảo hành và xem lại các phiếu đã tiếp nhận để bảo đảm yêu cầu được lưu đầy đủ và có thể tra cứu.
 
-### US08 -- Xem danh sách phiếu bảo hành [COULD]
+GWT01: Given dữ liệu bắt buộc hợp lệ, When bấm Tạo phiếu, Then hệ thống sinh mã phiếu duy nhất, lưu thời gian và gán trạng thái Mới tiếp nhận.
+GWT02: Given phiếu đã được tạo, When mở chi tiết phiếu, Then hiển thị đầy đủ thông tin khách hàng, thiết bị, mô tả lỗi, nhóm sự cố, mức ưu tiên và trạng thái.
+GWT03: Given hệ thống đã có phiếu bảo hành, When mở danh sách phiếu, Then hiển thị mã phiếu, khách hàng, thiết bị, nhóm sự cố, mức ưu tiên và trạng thái.
 
-Là nhân viên tiếp nhận, tôi muốn xem danh sách phiếu bảo hành để tra cứu các yêu cầu đã được tiếp nhận.
+Ngoại lệ 1: Given lưu dữ liệu thất bại, When tạo phiếu, Then hệ thống thông báo lỗi và không báo thành công.
+Ngoại lệ 2: Given hệ thống chưa có phiếu bảo hành, When mở danh sách phiếu, Then hiển thị danh sách trống và không phát sinh lỗi.
 
-- Given hệ thống đã có phiếu bảo hành, When mở danh sách phiếu, Then hiển thị mã phiếu, khách hàng, thiết bị, nhóm sự cố, mức ưu tiên và trạng thái.
-- **Ngoại lệ:** Given hệ thống chưa có phiếu bảo hành, When mở danh sách phiếu, Then hiển thị danh sách trống và không phát sinh lỗi.
-
-**Tổng:** 8 story | 2 MUST | 4 SHOULD | 2 COULD | 17 tiêu chí GWT | 8 ngoại lệ.
+Tổng: 7 User Story | 2 MUST | 4 SHOULD | 1 COULD | 17 tiêu chí GWT | 8 ngoại lệ.
 
 ## 3. Use Case
 
@@ -133,7 +127,7 @@ chi tiết phiếu.\
 -   **FR02:** Tạo khách hàng khi số điện thoại chưa tồn tại.
 -   **FR03:** Ghi nhận thiết bị và liên kết với khách hàng.
 -   **FR04:** Bắt buộc mô tả lỗi trước khi tạo phiếu.
--   **FR05:** Chọn một nhóm sự cố đang hoạt động.
+-   **FR05:** Cho phép nhân viên chọn nhóm sự cố từ danh mục nhóm sự cố.
 -   **FR06:** Chọn Thấp/Trung bình/Cao.
 -   **FR07:** Kiểm tra dữ liệu bắt buộc trước khi tạo phiếu.
 -   **FR08:** Sinh mã phiếu duy nhất.
@@ -166,10 +160,10 @@ ghi.
 | FR04 | US04 | UC04, UC06 | SHOULD | ticket.description | TC06–TC07 |
 | FR05 | US05 | UC05, UC06 | SHOULD | issue_category | TC08 |
 | FR06 | US06 | UC05, UC06 | SHOULD | ticket.priority | TC09 |
-| FR07 | US03–US07 | UC06 | SHOULD/MUST | validation | TC10 |
+| FR07 | US07 | UC06 | MUST | ticket.description, ticket.device_id, ticket.category_id, ticket.priority | TC10 |
 | FR08 | US07 | UC06 | MUST | ticket.ticket_code | TC11 |
 | FR09 | US07 | UC06 | MUST | ticket_status_log | TC12 |
-| FR10 | US07, US08 | UC07 | MUST/COULD | ticket + quan hệ | TC13 |
+| FR10 | US07 | UC07 | MUST | ticket, customer, device, issue_category | TC13 |
 
 **Ô truy vết còn trống: 0.**
 

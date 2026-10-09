@@ -52,8 +52,13 @@ cdtn1-nguyenducphuoc-l2/
 ├── docs/
 │   ├── ai-disclosure.md
 │   ├── api-contract.md
+│   ├── architecture-decisions.md
+│   ├── architecture.drawio
+│   ├── database.sql
+│   ├── erd.drawio
 │   ├── srs.md
-│   └── usecase.drawio
+│   ├── usecase.drawio
+│   └── wireframe.png
 ├── public/
 ├── src/
 ├── tests/
@@ -86,20 +91,37 @@ cdtn1-nguyenducphuoc-l2/
 - Churn.
 - AI tự động phân loại sự cố.
 ## 5. Tài liệu
-Các tài liệu phân tích và đặc tả được lưu trong thư mục docs/:
-- docs/srs.md: Đặc tả yêu cầu phần mềm rút gọn.
-- docs/usecase.drawio: Sơ đồ Use Case gốc.
-- docs/api-contract.md: Hợp đồng API cho Track SE.
-- docs/ai-disclosure.md: Khai báo sử dụng công cụ AI.
+
+Các tài liệu phân tích, thiết kế và đặc tả được lưu trong thư mục `docs/`:
+
+- `docs/srs.md`: Đặc tả yêu cầu phần mềm rút gọn, User Story, FR/NFR và bảng truy vết.
+- `docs/usecase.drawio`: Sơ đồ Use Case.
+- `docs/architecture.drawio`: Sơ đồ kiến trúc hệ thống.
+- `docs/architecture-decisions.md`: Lập luận lựa chọn kiến trúc theo NFR.
+- `docs/erd.drawio`: Sơ đồ thực thể - quan hệ (ERD).
+- `docs/database.sql`: SQL DDL skeleton cho MySQL.
+- `docs/wireframe.png`: Wireframe 3 màn hình chính của luồng L2.
+- `docs/api-contract.md`: Hợp đồng API cho Track SE.
+- `docs/ai-disclosure.md`: Khai báo sử dụng công cụ AI.
+
 ## 6. Trạng thái hiện tại
+
+### Đã hoàn thành
 - [x] Xác định phạm vi luồng L2.
 - [x] Hoàn thành User Story và tiêu chí GWT.
 - [x] Hoàn thành Use Case và luồng ngoại lệ.
-- [x] Hoàn thành SRS rút gọn.
-- [x] Hoàn thành bảng truy vết yêu cầu.
+- [x] Hoàn thành SRS rút gọn và bảng truy vết.
 - [x] Hoàn thành Use Case Diagram.
 - [x] Hoàn thành API Contract.
-- [x] Hoàn thành khai báo sử dụng AI.
+- [x] Xây dựng sơ đồ kiến trúc và lập luận theo NFR.
+- [x] Xây dựng ERD gồm 5 bảng.
+- [x] Viết SQL DDL skeleton cho MySQL.
+- [x] Xây dựng wireframe 3 màn hình chính.
+- [x] Cập nhật khai báo sử dụng AI.
+
+### Chưa hoàn thành
+- [ ] Rà soát tính nhất quán giữa SRS, ERD, SQL và wireframe.
+- [ ] Hoàn thiện và xuất báo cáo BT1 thành PDF 6–9 trang.
 - [ ] Triển khai Backend API.
 - [ ] Kết nối Frontend với Backend.
-- [ ] Hoàn thiện kiểm thử chức năng.
+- [ ] Kiểm thử chức năng.

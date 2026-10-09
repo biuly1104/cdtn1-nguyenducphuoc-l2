@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" modified="2026-10-07T04:30:00.000Z" agent="ChatGPT" version="24.7.17">
+  <diagram id="architecture-l2" name="Architecture L2">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="KIẾN TRÚC HỆ THỐNG SMART CRM – MEKONG MOBILE (LUỒNG L2)" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="40" width="830" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="actor" value="Nhân viên tiếp nhận" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="50" y="280" width="90" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="frontend" value="&lt;b&gt;Frontend&lt;/b&gt;&lt;br&gt;ReactJS + Vite&lt;br&gt;&lt;br&gt;• Tra cứu khách hàng&lt;br&gt;• Ghi nhận thiết bị/lỗi&lt;br&gt;• Phân loại &amp; ưu tiên&lt;br&gt;• Tạo / xem phiếu" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="210" y="210" width="240" height="260" as="geometry"/>
+        </mxCell>
+        <mxCell id="backend" value="&lt;b&gt;Backend API&lt;/b&gt;&lt;br&gt;Java 17 + Spring Boot&lt;br&gt;&lt;br&gt;REST API&lt;br&gt;Validation nghiệp vụ&lt;br&gt;Sinh mã phiếu&lt;br&gt;Gán trạng thái ‘Mới tiếp nhận’" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="520" y="210" width="250" height="260" as="geometry"/>
+        </mxCell>
+        <mxCell id="db" value="&lt;b&gt;MySQL Database&lt;/b&gt;&lt;br&gt;&lt;br&gt;customer&lt;br&gt;device&lt;br&gt;issue_category&lt;br&gt;ticket&lt;br&gt;ticket_status_log" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;align=center;verticalAlign=middle;fontSize=15;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="850" y="225" width="210" height="230" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" value="Sử dụng giao diện" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;fontSize=12;" edge="1" parent="1" source="actor" target="frontend">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="HTTP / JSON&#xa;REST API" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=block;startFill=1;endArrow=block;endFill=1;fontSize=12;" edge="1" parent="1" source="frontend" target="backend">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="JPA / SQL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=block;startFill=1;endArrow=block;endFill=1;fontSize=12;" edge="1" parent="1" source="backend" target="db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="scope" value="&lt;b&gt;Phạm vi L2&lt;/b&gt;&lt;br&gt;Tiếp nhận và phân loại yêu cầu bảo hành.&lt;br&gt;Kết thúc khi hệ thống sinh mã phiếu, gán trạng thái ‘Mới tiếp nhận’ và lưu phiếu thành công." style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;fontSize=14;dashed=1;strokeWidth=2;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="210" y="540" width="560" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="outscope" value="&lt;b&gt;Ngoài phạm vi&lt;/b&gt;&lt;br&gt;Phân công kỹ thuật viên, lịch sửa chữa, kho linh kiện, quy trình sửa chữa, thanh toán, CSAT/NPS, churn và AI tự động phân loại." style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;fontSize=14;dashed=1;strokeWidth=2;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="800" y="540" width="300" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="note" value="Kiến trúc 3 lớp: Presentation → Application/API → Data" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="350" y="110" width="500" height="30" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

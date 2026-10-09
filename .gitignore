@@ -26,3 +26,11 @@ dist-ssr
 # Environment files
 .env
 .env.local
+
+# Java / Spring Boot
+target/
+*.class
+
+# Additional environment files
+.env.*
+!.env.example
