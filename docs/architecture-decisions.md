@@ -22,3 +22,10 @@ Vì **NFR03** yêu cầu **100% phiếu bảo hành có mã không trùng trong 
 Kiến trúc gồm ba thành phần: Frontend ReactJS, Backend Spring Boot REST API và Database MySQL. Thiết kế phục vụ phạm vi L2 từ tra cứu khách hàng, ghi nhận thiết bị, phân loại sự cố đến tạo phiếu bảo hành có trạng thái ban đầu là `Mới tiếp nhận`.
 
 Các quyết định trên là phương án thiết kế để đáp ứng NFR; các ngưỡng hiệu năng cần được kiểm chứng bằng kết quả thử nghiệm khi hệ thống được triển khai.
+
+## Chú thích sơ đồ và phạm vi
+
+- Hộp chữ nhật: thành phần hệ thống và trách nhiệm của thành phần.
+- Mũi tên Frontend → Backend: HTTP/REST; Backend → MySQL: truy vấn dữ liệu qua JPA/SQL.
+- Ngoài phạm vi L2: phân công kỹ thuật viên, quy trình sửa chữa, kho linh kiện, thanh toán và AI phân loại tự động.
+- Kiến trúc là phương án thiết kế cho BT1; chưa có kết quả đo hiệu năng.
