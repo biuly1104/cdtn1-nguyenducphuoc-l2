@@ -119,9 +119,3 @@ Các tài liệu phân tích, thiết kế và đặc tả được lưu trong t
 - [x] Xây dựng wireframe 3 màn hình chính.
 - [x] Cập nhật khai báo sử dụng AI.
 
-### Chưa hoàn thành
-- [ ] Rà soát tính nhất quán giữa SRS, ERD, SQL và wireframe.
-- [ ] Hoàn thiện và xuất báo cáo BT1 thành PDF 6–9 trang.
-- [ ] Triển khai Backend API.
-- [ ] Kết nối Frontend với Backend.
-- [ ] Kiểm thử chức năng.
