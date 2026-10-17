@@ -22,27 +22,57 @@ Luồng kết thúc khi hệ thống sinh mã phiếu, gán trạng thái **“M
 
 ## 2. Yêu cầu môi trường
 
-### Frontend
-- Node.js
-- npm
-- ReactJS
-- Vite
+Công nghệ sử dụng
 
-### Backend dự kiến
-- Java 17
-- Spring Boot
-- Maven
+Frontend: ReactJS, Vite, Node.js, npm.
 
-### Cơ sở dữ liệu dự kiến
-- MySQL
+Backend: Java 17, Spring Boot, Maven.
 
-### Công cụ
-- Visual Studio Code
-- IntelliJ IDEA
-- MySQL Workbench
-- Postman
-- Git
-- GitHub
+Database: MySQL 8.0.
+
+Công cụ: VS Code, IntelliJ IDEA, MySQL Workbench, Postman, Git/GitHub.
+
+Cài đặt database
+
+Khởi động dịch vụ MySQL.
+
+Chạy file docs/database.sql để tạo database mekong_mobile và 5 bảng.
+
+Chạy file backend/src/main/resources/seed.sql để thêm dữ liệu mẫu.
+
+Chạy Backend
+
+Mở CMD tại thư mục backend.
+
+Thiết lập biến môi trường DB_PASSWORD bằng mật khẩu MySQL trên máy. Không đưa mật khẩu vào GitHub.
+
+Chạy lệnh:
+
+mvnw.cmd spring-boot:run
+
+Truy cập http://localhost:8080/api/customers để kiểm tra API.
+
+Cấu hình
+
+Database: mekong_mobile.
+
+Tài khoản MySQL mặc định: root (có thể thay đổi bằng biến DB_USERNAME).
+
+Mật khẩu: lấy từ biến môi trường DB_PASSWORD.
+
+Cổng backend: 8080.
+
+File cấu hình mẫu: .env.example.
+
+Cấu trúc Backend
+
+routes/: REST Controller, tiếp nhận yêu cầu HTTP.
+
+services/: xử lý nghiệp vụ và kiểm tra dữ liệu.
+
+repositories/: truy cập database qua Spring Data JPA.
+
+Customer.java: Entity ánh xạ bảng customer.
 
 ## 3. Cấu trúc thư mục
 
@@ -118,4 +148,27 @@ Các tài liệu phân tích, thiết kế và đặc tả được lưu trong t
 - [x] Viết SQL DDL skeleton cho MySQL.
 - [x] Xây dựng wireframe 3 màn hình chính.
 - [x] Cập nhật khai báo sử dụng AI.
+
+### Tiến độ Buổi 08 – Triển khai module đầu tiên
+
+- [x] Khởi tạo backend bằng Java 17 và Spring Boot.
+- [x] Kết nối Spring Boot với MySQL 8.0.
+- [x] Tạo database `mekong_mobile` với 5 bảng theo thiết kế BT1.
+- [x] Cập nhật `docs/database.sql` để tránh lỗi tạo bảng trùng khi chạy lại.
+- [x] Tổ chức backend theo 3 lớp `routes`, `services`, `repositories`.
+- [x] Triển khai API CRUD khách hàng.
+- [x] Kiểm tra API thêm khách hàng: HTTP 201.
+- [x] Kiểm tra API xem khách hàng: HTTP 200.
+- [x] Kiểm tra API cập nhật khách hàng: HTTP 200.
+- [x] Kiểm tra khách hàng không tồn tại: HTTP 404.
+- [x] Tạo và chạy dữ liệu mẫu bằng `backend/src/main/resources/seed.sql`.
+- [x] Chụp ảnh minh chứng API trả về danh sách khách hàng.
+
+**Module đã triển khai:** Quản lý khách hàng, phục vụ bước tra cứu và tạo khách hàng trong luồng L2.
+
+**API:** `http://localhost:8080/api/customers`
+
+**Ảnh minh chứng:** `docs/minh-chung-crud-khach-hang.png`
+
+**Công việc tiếp theo:** Hoàn thiện kiểm thử xóa khách hàng, triển khai tiếp nhận thiết bị và tạo phiếu bảo hành.
 
