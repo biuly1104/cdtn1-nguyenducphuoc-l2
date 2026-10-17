@@ -9,7 +9,7 @@ COLLATE utf8mb4_unicode_ci;
 USE mekong_mobile;
 
 -- 1. Khach hang
-CREATE TABLE customer (
+CREATE TABLE IF NOT EXISTS customer (
     customer_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
     phone VARCHAR(11) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE customer (
 );
 
 -- 2. Thiet bi
-CREATE TABLE device (
+CREATE TABLE IF NOT EXISTS device (
     device_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     customer_id BIGINT NOT NULL,
     device_name VARCHAR(100) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE device (
 );
 
 -- 3. Nhom su co
-CREATE TABLE issue_category (
+CREATE TABLE IF NOT EXISTS issue_category (
     category_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
 
@@ -44,7 +44,7 @@ CREATE TABLE issue_category (
 );
 
 -- 4. Phieu bao hanh
-CREATE TABLE ticket (
+CREATE TABLE IF NOT EXISTS ticket (
     ticket_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     ticket_code VARCHAR(30) NOT NULL,
     device_id BIGINT NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE ticket (
 );
 
 -- 5. Lich su trang thai phieu
-CREATE TABLE ticket_status_log (
+CREATE TABLE IF NOT EXISTS ticket_status_log (
     log_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     ticket_id BIGINT NOT NULL,
     from_status VARCHAR(30),
