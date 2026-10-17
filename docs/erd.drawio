@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" agent="ChatGPT">
   <diagram id="erd-l2" name="ERD L2">
     <mxGraphModel dx="2591" dy="1052" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1050" math="0" shadow="0">
@@ -127,7 +128,7 @@
         <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#cbd5e1;fontFamily=Arial;fontSize=13;fontColor=#334155;align=left;spacingLeft=14;verticalAlign=middle;" value="&lt;b&gt;Ràng buộc &amp;amp; chỉ mục:&lt;/b&gt; customer.phone UNIQUE; issue_category.name UNIQUE; ticket.ticket_code UNIQUE; ticket(status, received_at); device(customer_id); ticket_status_log(ticket_id, changed_at).&lt;br&gt;&lt;b&gt;Quy tắc nghiệp vụ:&lt;/b&gt; Khách hàng của phiếu được xác định qua ticket.device_id → device.customer_id. Mức ưu tiên: THAP / TRUNG_BINH / CAO; trạng thái khởi tạo: MOI_TIEP_NHAN." vertex="1">
           <mxGeometry height="65" width="1380" x="60" y="980" as="geometry" />
         </mxCell>
-      </root>
+      <mxCell id="legend-feedback-bt1" value="CHÚ THÍCH: Hình chữ nhật = bảng; PK = khóa chính; FK = khóa ngoại; UNIQUE = không trùng; 1:N = một-nhiều; đường nối = quan hệ bảng." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;" vertex="1" parent="1"><mxGeometry x="60" y="1300" width="1450" height="100" as="geometry" /></mxCell></root>
     </mxGraphModel>
   </diagram>
 </mxfile>

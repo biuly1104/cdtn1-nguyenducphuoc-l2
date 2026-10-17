@@ -32,22 +32,6 @@ viên, lịch hẹn, kho linh kiện, sửa chữa, thanh toán, CSAT/NPS và AI
 | NFR | Non-Functional Requirement – yêu cầu phi chức năng. |
 | API | Application Programming Interface – giao diện để frontend và backend trao đổi dữ liệu. |
 
-### Các bên liên quan và vai trò
-
-| Vai trò | Được làm / trách nhiệm | Không được làm trong L2 |
-| --- | --- | --- |
-| Nhân viên tiếp nhận | Trực tiếp dùng hệ thống để tra cứu, nhập khách hàng và thiết bị, phân loại, tạo và xem phiếu bảo hành. | Không phân công kỹ thuật viên, sửa chữa, thanh toán hay cập nhật tiến độ xử lý ngoài bước tiếp nhận. |
-| Khách hàng | Cung cấp số điện thoại, thông tin thiết bị và mô tả lỗi cho nhân viên tiếp nhận; là bên liên quan của quy trình. | Không đăng nhập hoặc tự tạo/sửa phiếu trên giao diện nội bộ L2. |
-
-**Lưu ý:** Chỉ nhân viên tiếp nhận là actor trực tiếp tương tác với phần mềm trong Use Case Diagram L2. Khách hàng là vai trò nghiệp vụ bên ngoài, không được giả định có quyền đăng nhập.
-
-### Quy tắc nghiệp vụ
-
-- **BR01:** Số điện thoại dùng tra cứu và tạo khách hàng gồm 10–11 chữ số; không tạo hai khách hàng có cùng số điện thoại.
-- **BR02:** Phiếu chỉ được tạo khi đã có thiết bị, mô tả lỗi, nhóm sự cố và mức ưu tiên hợp lệ.
-- **BR03:** Mức ưu tiên chỉ nhận một trong ba giá trị: Thấp, Trung bình, Cao.
-- **BR04:** Mỗi phiếu có mã duy nhất, thời gian tiếp nhận và trạng thái khởi tạo `Mới tiếp nhận`.
-
 ## 2. User Story và GWT
 
 Các User Story được ưu tiên theo MoSCoW: **2 MUST, 4 SHOULD và 1 COULD**.
@@ -112,7 +96,7 @@ Tổng: 7 User Story | 2 MUST | 4 SHOULD | 1 COULD | 17 tiêu chí GWT | 8 ngo�
 
 ## 3. Use Case
 
-**Actor chính:** Nhân viên tiếp nhận. **Vai trò liên quan:** Khách hàng (cung cấp thông tin, không thao tác trực tiếp trên hệ thống).
+**Actor:** Nhân viên tiếp nhận.
 
 UC01 Tra cứu khách hàng; UC02 Tạo khách hàng mới; UC03 Ghi nhận thiết
 bị; UC04 Ghi nhận thông tin sự cố; UC05 Phân loại yêu cầu; UC06 Tạo
@@ -127,11 +111,11 @@ phiếu; (7) hệ thống validate; (8) sinh mã phiếu; (9) lưu phiếu/thờ
 gian; (10) tạo trạng thái `Mới tiếp nhận`; (11) hiển thị thành công và
 chi tiết phiếu.\
 **Ngoại lệ:**
-- **E3.1 – Tại bước 3:** Nếu thiếu mô tả lỗi, hệ thống hiển thị lỗi và yêu cầu nhập mô tả.
-- **E4.1 – Tại bước 4:** Nếu chưa chọn nhóm sự cố, hệ thống hiển thị lỗi và yêu cầu chọn nhóm.
-- **E5.1 – Tại bước 5:** Nếu chưa chọn mức ưu tiên, hệ thống hiển thị lỗi và yêu cầu chọn mức ưu tiên.
-- **E7.1 – Tại bước 7:** Nếu thiết bị không hợp lệ, hệ thống từ chối tạo phiếu và yêu cầu kiểm tra lại thông tin thiết bị.
-- **E9.1 – Tại bước 9:** Nếu xảy ra lỗi khi lưu dữ liệu, hệ thống thông báo tạo phiếu thất bại và không hiển thị thông báo thành công.
+- **3a – Tại bước 3:** Nếu thiếu mô tả lỗi, hệ thống hiển thị lỗi và yêu cầu nhập mô tả.
+- **4a – Tại bước 4:** Nếu chưa chọn nhóm sự cố, hệ thống hiển thị lỗi và yêu cầu chọn nhóm.
+- **5a – Tại bước 5:** Nếu chưa chọn mức ưu tiên, hệ thống hiển thị lỗi và yêu cầu chọn mức ưu tiên.
+- **7a – Tại bước 7:** Nếu thiết bị không hợp lệ, hệ thống từ chối tạo phiếu và yêu cầu kiểm tra lại thông tin thiết bị.
+- **9a – Tại bước 9:** Nếu xảy ra lỗi khi lưu dữ liệu, hệ thống thông báo tạo phiếu thất bại và không hiển thị thông báo thành công.
 **Hậu điều kiện:** Phiếu hợp lệ tồn tại với mã duy nhất và trạng thái
 `Mới tiếp nhận`.
 
