@@ -163,6 +163,9 @@ Các tài liệu phân tích, thiết kế và đặc tả được lưu trong t
 - [x] Kiểm tra khách hàng không tồn tại: HTTP 404.
 - [x] Tạo và chạy dữ liệu mẫu bằng `backend/src/main/resources/seed.sql`.
 - [x] Chụp ảnh minh chứng API trả về danh sách khách hàng.
+- [x] Kiểm thử DELETE khách hàng: HTTP 204 No Content.
+- [x] Xác nhận sau khi xóa, GET theo ID trả về HTTP 404.
+- [x] Hoàn thành kiểm thử CRUD khách hàng (Create, Read, Update, Delete).
 
 **Module đã triển khai:** Quản lý khách hàng, phục vụ bước tra cứu và tạo khách hàng trong luồng L2.
 
@@ -170,5 +173,4 @@ Các tài liệu phân tích, thiết kế và đặc tả được lưu trong t
 
 **Ảnh minh chứng:** `docs/minh-chung-crud-khach-hang.png`
 
-**Công việc tiếp theo:** Hoàn thiện kiểm thử xóa khách hàng, triển khai tiếp nhận thiết bị và tạo phiếu bảo hành.
 
