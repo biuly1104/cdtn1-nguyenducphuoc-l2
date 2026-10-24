@@ -74,7 +74,80 @@ repositories/: truy cập database qua Spring Data JPA.
 
 Customer.java: Entity ánh xạ bảng customer.
 
-## 3. Cấu trúc thư mục
+## 3. Hướng dẫn chạy lại hệ thống
+
+
+### 3.1. Chuẩn bị môi trường
+
+Cài đặt Java 17, Node.js, npm và MySQL 8.0.
+
+Khởi động MySQL và tạo cơ sở dữ liệu `mekong_mobile` bằng file `docs/database.sql`.
+
+Sau đó chạy file `backend/src/main/resources/seed.sql` để thêm dữ liệu mẫu.
+
+### 3.2. Chạy Backend
+
+Mở CMD tại thư mục gốc dự án.
+
+Bước 1:
+```cmd
+cd backend
+```
+
+Bước 2:
+```cmd
+set /p DB_PASSWORD=Nhap mat khau MySQL:
+```
+
+Bước 3:
+```cmd
+mvnw.cmd spring-boot:run
+```
+
+Kiểm tra Backend tại:
+http://localhost:8080/api/customers
+
+### 3.3. Chạy Frontend
+
+Mở cửa sổ CMD mới tại thư mục gốc dự án.
+
+Bước 1:
+```cmd
+npm install
+```
+
+Bước 2:
+```cmd
+npm run dev
+```
+
+Truy cập:
+http://localhost:5173
+
+### 3.4. Chạy Unit Test
+
+Mở cửa sổ CMD mới tại thư mục `backend`.
+
+Bước 1:
+```cmd
+set /p DB_PASSWORD=Nhap mat khau MySQL:
+```
+
+Bước 2:
+```cmd
+mvnw.cmd test
+```
+
+Kết quả kiểm thử đã xác nhận:
+
+- Tests run: 7
+- Failures: 0
+- Errors: 0
+- Skipped: 0
+- BUILD SUCCESS
+
+### 3.5. Cấu trúc thư mục
+
 
 ```text
 cdtn1-nguyenducphuoc-l2/
@@ -174,113 +247,25 @@ Các tài liệu phân tích, thiết kế và đặc tả được lưu trong t
 **Ảnh minh chứng:** `docs/minh-chung-crud-khach-hang.png`
 
 
+### Tiến độ Buổi 10 – Tích hợp và kiểm thử luồng L2
+
+- [x] Hoàn thành 3 màn hình React: danh sách phiếu, chi tiết phiếu và tiếp nhận thiết bị.
+- [x] Kết nối Frontend với Backend thông qua `src/api/client.js`.
+- [x] Xử lý 3 trạng thái giao diện Loading, Empty và Error bằng `DataState`.
+- [x] Hoàn thành API tạo phiếu, danh sách phiếu, chi tiết phiếu và nhóm sự cố.
+- [x] Chạy thành công luồng tiếp nhận bảo hành End-to-End trên dữ liệu MySQL.
+- [x] Sinh mã phiếu bảo hành và lưu trạng thái `MOI_TIEP_NHAN`.
+- [x] Kiểm tra dữ liệu phiếu vẫn tồn tại sau khi tải lại trang.
+- [x] Hoàn thành 6 Unit Test nghiệp vụ bằng JUnit và Mockito.
+- [x] Chạy toàn bộ 7 bài kiểm thử: 0 Failures, 0 Errors, BUILD SUCCESS.
+- [x] Lưu ảnh minh chứng tại `docs/e2e-ticket-list.png`.
+- [x] Cập nhật tài liệu `docs/ai-disclosure.md`.
+- [x] Đạt yêu cầu tối thiểu 8 Conventional Commits.
+
+**Kết quả:** Hoàn thành triển khai và kiểm thử luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành.
+
 ---
 
-## 7. Huong dan chay du an - Buoi 10
-
-### 7.1. Chuan bi
-
-Yeu cau:
-- Java 17
-- Node.js va npm
-- MySQL 8.0
-- Maven Wrapper (da co trong backend)
-
-### 7.2. Khoi tao database
-
-Mo MySQL Workbench, ket noi MySQL va chay lan luot:
-
-1. `docs/database.sql`
-2. `backend/src/main/resources/seed.sql`
-
-Database su dung: `mekong_mobile`.
-
-### 7.3. Chay Backend
-
-Mo CMD tai thu muc goc du an.
-
-Buoc 1:
-```cmd
-cd backend
-```
-
-Buoc 2:
-```cmd
-set /p DB_PASSWORD=Nhap mat khau MySQL:
-```
-
-Buoc 3:
-```cmd
-mvnw.cmd spring-boot:run
-```
-
-Kiem tra API:
-
-- http://localhost:8080/api/customers
-- http://localhost:8080/api/issue-categories
-- http://localhost:8080/api/tickets
-
-### 7.4. Chay Frontend
-
-Mo CMD moi tai thu muc goc du an.
-
-Buoc 1:
-```cmd
-npm install
-```
-
-Buoc 2:
-```cmd
-npm run dev
-```
-
-Mo trinh duyet tai http://localhost:5173.
-
-Neu cong 5173 dang duoc su dung, Vite se hien thi cong khac.
-
-### 7.5. Chay Unit Test
-
-Mo CMD tai thu muc backend.
-
-Buoc 1:
-```cmd
-set /p DB_PASSWORD=Nhap mat khau MySQL:
-```
-
-Buoc 2:
-```cmd
-mvnw.cmd test
-```
-
-Ket qua da kiem chung:
-- Tests run: 7
-- Failures: 0
-- Errors: 0
-- Skipped: 0
-- BUILD SUCCESS
-
-## 8. Tien do Buoi 10
-
-- [x] Hoan thanh giao dien React gom 3 man hinh.
-- [x] Ket noi Frontend voi Backend qua API that.
-- [x] Hien thi Loading, Empty va Error state.
-- [x] Trien khai API danh sach nhom su co.
-- [x] Trien khai API danh sach phieu bao hanh.
-- [x] Trien khai API chi tiet phieu bao hanh.
-- [x] Trien khai API tao phieu bao hanh.
-- [x] Kiem tra luong L2 End-to-End thanh cong.
-- [x] Tao phieu bao hanh va luu vao MySQL.
-- [x] Kiem tra phieu van hien thi sau khi tai lai trang.
-- [x] Chay 6 Unit Test nghiep vu thanh cong.
-- [x] Chay tong cong 7 test PASS, 0 failures, 0 errors.
-- [x] Luu anh minh chung E2E.
-
-Anh minh chung: `docs/e2e-ticket-list.png`
-
-Ma phieu kiem thu:
-`BH-8E3B2567395E4B38`
-
-Trang thai ban dau: `MOI_TIEP_NHAN`.
 
 
 
