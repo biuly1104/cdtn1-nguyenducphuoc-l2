@@ -174,3 +174,113 @@ Các tài liệu phân tích, thiết kế và đặc tả được lưu trong t
 **Ảnh minh chứng:** `docs/minh-chung-crud-khach-hang.png`
 
 
+---
+
+## 7. Huong dan chay du an - Buoi 10
+
+### 7.1. Chuan bi
+
+Yeu cau:
+- Java 17
+- Node.js va npm
+- MySQL 8.0
+- Maven Wrapper (da co trong backend)
+
+### 7.2. Khoi tao database
+
+Mo MySQL Workbench, ket noi MySQL va chay lan luot:
+
+1. `docs/database.sql`
+2. `backend/src/main/resources/seed.sql`
+
+Database su dung: `mekong_mobile`.
+
+### 7.3. Chay Backend
+
+Mo CMD tai thu muc goc du an.
+
+Buoc 1:
+```cmd
+cd backend
+```
+
+Buoc 2:
+```cmd
+set /p DB_PASSWORD=Nhap mat khau MySQL:
+```
+
+Buoc 3:
+```cmd
+mvnw.cmd spring-boot:run
+```
+
+Kiem tra API:
+
+- http://localhost:8080/api/customers
+- http://localhost:8080/api/issue-categories
+- http://localhost:8080/api/tickets
+
+### 7.4. Chay Frontend
+
+Mo CMD moi tai thu muc goc du an.
+
+Buoc 1:
+```cmd
+npm install
+```
+
+Buoc 2:
+```cmd
+npm run dev
+```
+
+Mo trinh duyet tai http://localhost:5173.
+
+Neu cong 5173 dang duoc su dung, Vite se hien thi cong khac.
+
+### 7.5. Chay Unit Test
+
+Mo CMD tai thu muc backend.
+
+Buoc 1:
+```cmd
+set /p DB_PASSWORD=Nhap mat khau MySQL:
+```
+
+Buoc 2:
+```cmd
+mvnw.cmd test
+```
+
+Ket qua da kiem chung:
+- Tests run: 7
+- Failures: 0
+- Errors: 0
+- Skipped: 0
+- BUILD SUCCESS
+
+## 8. Tien do Buoi 10
+
+- [x] Hoan thanh giao dien React gom 3 man hinh.
+- [x] Ket noi Frontend voi Backend qua API that.
+- [x] Hien thi Loading, Empty va Error state.
+- [x] Trien khai API danh sach nhom su co.
+- [x] Trien khai API danh sach phieu bao hanh.
+- [x] Trien khai API chi tiet phieu bao hanh.
+- [x] Trien khai API tao phieu bao hanh.
+- [x] Kiem tra luong L2 End-to-End thanh cong.
+- [x] Tao phieu bao hanh va luu vao MySQL.
+- [x] Kiem tra phieu van hien thi sau khi tai lai trang.
+- [x] Chay 6 Unit Test nghiep vu thanh cong.
+- [x] Chay tong cong 7 test PASS, 0 failures, 0 errors.
+- [x] Luu anh minh chung E2E.
+
+Anh minh chung: `docs/e2e-ticket-list.png`
+
+Ma phieu kiem thu:
+`BH-8E3B2567395E4B38`
+
+Trang thai ban dau: `MOI_TIEP_NHAN`.
+
+
+
