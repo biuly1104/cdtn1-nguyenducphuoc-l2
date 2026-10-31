@@ -16,7 +16,9 @@
 | 4 | GET | `/api/issue-categories` | Lấy danh sách nhóm sự cố |
 | 5 | POST | `/api/tickets` | Tạo phiếu bảo hành |
 | 6 | GET | `/api/tickets` | Lấy danh sách phiếu bảo hành |
-| 7 | GET | `/api/tickets/{ticketCode}` | Xem chi tiết phiếu bảo hành |
+| 7 | GET | `/api/tickets/{ticketId}` | Xem chi tiết phiếu bảo hành |
+| 8 | PUT | `/api/tickets/{ticketId}` | Cập nhật phiếu bảo hành |
+| 9 | DELETE | `/api/tickets/{ticketId}` | Xóa phiếu bảo hành |
 
 ---
 
@@ -346,3 +348,56 @@ GET /api/tickets/BH-20261003-001
 | 404 Not Found | Không tìm thấy tài nguyên |
 | 409 Conflict | Dữ liệu bị trùng hoặc xung đột |
 | 500 Internal Server Error | Lỗi phía hệ thống |
+
+## 10. Cập nhật phiếu bảo hành (BT2)
+
+### PUT `/api/tickets/{ticketId}`
+
+API cập nhật thông tin phân loại phiếu bảo hành đã tồn tại.
+
+**Request mẫu:**
+
+```http
+PUT /api/tickets/1
+Content-Type: application/json
+```
+
+**Request JSON:**
+
+```json
+{
+  "categoryId": 1,
+  "description": "Kiem tra cap nhat phieu bao hanh BT2",
+  "priority": "CAO"
+}
+```
+
+**Kết quả kiểm thử:**
+
+- `200 OK`: Cập nhật thành công, trả về thông tin phiếu đã cập nhật.
+- `404 Not Found`: Không tìm thấy phiếu bảo hành.
+
+## 11. Xóa phiếu bảo hành (BT2)
+
+### DELETE `/api/tickets/{ticketId}`
+
+API xóa phiếu bảo hành theo ID.
+
+**Request mẫu:**
+
+```http
+DELETE /api/tickets/2
+```
+
+**Kết quả:**
+
+- `204 No Content`: Xóa thành công, không trả về nội dung.
+- `404 Not Found`: Không tìm thấy phiếu bảo hành.
+
+**Minh chứng kiểm thử ngày 31/10/2026:**
+
+- Tạo phiếu thử nghiệm có `ticketId = 2` bằng POST thành công.
+- Sau thao tác DELETE, `GET /api/tickets/2` trả về `404 Not Found`.
+- Danh sách `GET /api/tickets` không còn phiếu ID 2.
+- Phiếu ID 1 vẫn được giữ nguyên.
+- Chưa ghi nhận trực tiếp mã HTTP của lần DELETE đầu tiên.

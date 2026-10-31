@@ -266,6 +266,23 @@ Các tài liệu phân tích, thiết kế và đặc tả được lưu trong t
 
 ---
 
+### Tiến độ BT2 – Hoàn thiện CRUD phiếu bảo hành
 
+- [x] Hoàn thiện CRUD thứ nhất: Quản lý khách hàng.
+- [x] Hoàn thiện CRUD thứ hai: Quản lý phiếu bảo hành (Ticket).
+- [x] Triển khai `POST /api/tickets` để tạo phiếu bảo hành.
+- [x] Triển khai `GET /api/tickets` để xem danh sách phiếu.
+- [x] Triển khai `GET /api/tickets/{ticketId}` để xem chi tiết phiếu.
+- [x] Triển khai `PUT /api/tickets/{ticketId}` để cập nhật thông tin phân loại.
+- [x] Triển khai `DELETE /api/tickets/{ticketId}` để xóa phiếu.
+- [x] Kiểm thử POST: HTTP 201 Created, tạo thành công phiếu ID 2.
+- [x] Kiểm thử PUT: HTTP 200 OK, cập nhật phiếu ID 1.
+- [x] Kiểm tra sau DELETE: GET phiếu ID 2 trả về HTTP 404 và danh sách không còn phiếu này.
+- [x] Chạy 7 bài kiểm thử tự động: 0 Failures, 0 Errors, BUILD SUCCESS.
+- [x] Cập nhật tài liệu `docs/api-contract.md` cho API PUT và DELETE.
+
+**Kết quả:** Hai module CRUD Khách hàng và Phiếu bảo hành đã được triển khai. Chức năng xóa Ticket đã được xác nhận qua trạng thái dữ liệu sau xóa; mã HTTP 204 của yêu cầu xóa đầu tiên chưa được ghi nhận trực tiếp.
+
+**Commit triển khai CRUD Ticket:** `47bf629`.
 
 
