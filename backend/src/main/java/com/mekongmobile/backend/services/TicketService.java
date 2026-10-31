@@ -31,6 +31,7 @@ public class TicketService {
         this.categoryRepository = categoryRepository;
     }
 
+    // Lay danh sach phieu bao hanh
     public List<Map<String, Object>> getAllTickets() {
         return ticketRepository.findAllByOrderByReceivedAtDesc()
                 .stream()
@@ -38,14 +39,17 @@ public class TicketService {
                 .toList();
     }
 
+    // Lay chi tiet phieu bao hanh
     public Map<String, Object> getTicketById(Long id) {
         Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Khong tim thay phieu bao hanh"));
+                        HttpStatus.NOT_FOUND,
+                        "Khong tim thay phieu bao hanh"));
 
         return toTicketView(ticket);
     }
 
+    // Tao phieu bao hanh
     @Transactional
     public Map<String, Object> createTicket(
             Long customerId,
@@ -59,13 +63,15 @@ public class TicketService {
         if (customerId == null ||
                 !customerRepository.existsById(customerId)) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Khach hang khong ton tai");
+                    HttpStatus.NOT_FOUND,
+                    "Khach hang khong ton tai");
         }
 
         if (categoryId == null ||
                 !categoryRepository.existsById(categoryId)) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Nhom su co khong ton tai");
+                    HttpStatus.NOT_FOUND,
+                    "Nhom su co khong ton tai");
         }
 
         if (isBlank(deviceName) ||
@@ -89,7 +95,8 @@ public class TicketService {
         if (priority == null ||
                 !List.of("THAP", "TRUNG_BINH", "CAO").contains(priority)) {
             throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Muc uu tien khong hop le");
+                    HttpStatus.BAD_REQUEST,
+                    "Muc uu tien khong hop le");
         }
 
         Device device = new Device();
@@ -103,7 +110,10 @@ public class TicketService {
         Ticket ticket = new Ticket();
         ticket.setTicketCode(
                 "BH-" + UUID.randomUUID().toString()
-                        .replace("-", "").substring(0, 16).toUpperCase());
+                        .replace("-", "")
+                        .substring(0, 16)
+                        .toUpperCase());
+
         ticket.setDeviceId(savedDevice.getDeviceId());
         ticket.setCategoryId(categoryId);
         ticket.setDescription(description.trim());
@@ -115,25 +125,86 @@ public class TicketService {
         return toTicketView(savedTicket);
     }
 
+    // Cap nhat phieu bao hanh
+    @Transactional
+    public Map<String, Object> updateTicket(
+            Long id,
+            Long categoryId,
+            String description,
+            String priority) {
+
+        Ticket ticket = ticketRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Khong tim thay phieu bao hanh"));
+
+        if (categoryId == null ||
+                !categoryRepository.existsById(categoryId)) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    "Nhom su co khong ton tai");
+        }
+
+        if (isBlank(description) ||
+                description.length() > 1000) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Mo ta loi khong hop le");
+        }
+
+        if (priority == null ||
+                !List.of("THAP", "TRUNG_BINH", "CAO").contains(priority)) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Muc uu tien khong hop le");
+        }
+
+        ticket.setCategoryId(categoryId);
+        ticket.setDescription(description.trim());
+        ticket.setPriority(priority);
+
+        Ticket updatedTicket = ticketRepository.saveAndFlush(ticket);
+
+        return toTicketView(updatedTicket);
+    }
+
+    // Xoa phieu bao hanh
+    @Transactional
+    public void deleteTicket(Long id) {
+        Ticket ticket = ticketRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Khong tim thay phieu bao hanh"));
+
+        ticketRepository.delete(ticket);
+    }
+
+    // Kiem tra chuoi rong
     private boolean isBlank(String value) {
         return value == null || value.isBlank();
     }
 
+    // Chuyen Ticket thanh du lieu tra ve API
     private Map<String, Object> toTicketView(Ticket ticket) {
+
         Device device = deviceRepository.findById(ticket.getDeviceId())
                 .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Khong tim thay thiet bi"));
+                        HttpStatus.NOT_FOUND,
+                        "Khong tim thay thiet bi"));
 
         Customer customer = customerRepository.findById(device.getCustomerId())
                 .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Khong tim thay khach hang"));
+                        HttpStatus.NOT_FOUND,
+                        "Khong tim thay khach hang"));
 
         IssueCategory category = categoryRepository
                 .findById(ticket.getCategoryId())
                 .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Khong tim thay nhom su co"));
+                        HttpStatus.NOT_FOUND,
+                        "Khong tim thay nhom su co"));
 
         Map<String, Object> result = new java.util.LinkedHashMap<>();
+
         result.put("ticketId", ticket.getTicketId());
         result.put("ticketCode", ticket.getTicketCode());
         result.put("deviceName", device.getDeviceName());
@@ -147,6 +218,7 @@ public class TicketService {
         result.put("priority", ticket.getPriority());
         result.put("status", ticket.getStatus());
         result.put("receivedAt", ticket.getReceivedAt());
+
         return result;
     }
 }

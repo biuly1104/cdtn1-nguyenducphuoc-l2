@@ -19,17 +19,20 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
+    // GET - Danh sach phieu bao hanh
     @GetMapping
     public List<Map<String, Object>> getAllTickets() {
         return ticketService.getAllTickets();
     }
 
+    // GET - Chi tiet phieu bao hanh
     @GetMapping("/{id}")
     public Map<String, Object> getTicketById(
             @PathVariable Long id) {
         return ticketService.getTicketById(id);
     }
 
+    // POST - Tao phieu bao hanh
     @PostMapping
     public ResponseEntity<Map<String, Object>> createTicket(
             @RequestBody CreateTicketRequest request) {
@@ -44,14 +47,49 @@ public class TicketController {
                 request.priority()
         );
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(ticket);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(ticket);
     }
 
+    // PUT - Cap nhat phieu bao hanh
+    @PutMapping("/{id}")
+    public Map<String, Object> updateTicket(
+            @PathVariable Long id,
+            @RequestBody UpdateTicketRequest request) {
+
+        return ticketService.updateTicket(
+                id,
+                request.categoryId(),
+                request.description(),
+                request.priority()
+        );
+    }
+
+    // DELETE - Xoa phieu bao hanh
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTicket(
+            @PathVariable Long id) {
+
+        ticketService.deleteTicket(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    // Du lieu tao phieu
     public record CreateTicketRequest(
             Long customerId,
             String deviceName,
             String deviceType,
             String serialNumber,
+            Long categoryId,
+            String description,
+            String priority
+    ) {
+    }
+
+    // Du lieu cap nhat phieu
+    public record UpdateTicketRequest(
             Long categoryId,
             String description,
             String priority
