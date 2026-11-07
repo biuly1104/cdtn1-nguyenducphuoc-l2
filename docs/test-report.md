@@ -42,33 +42,21 @@
 
 
 
-| ID | Nhóm kiểm thử | Priority | Chức năng | Dữ liệu / Bước thực hiện | Kết quả mong đợi | Kết quả thực tế | Trạng thái | Minh chứng |
+| ID | Nhóm kiểm thử | Priority | Chức năng / Bước thực hiện | Kết quả mong đợi | Kết quả thực tế | Trạng thái | Minh chứng |
+|---|---|---|---|---|---|---|---|
 
-|---|---|---|---|---|---|---|---|---|
-
-| TC01 | Happy Path | High | Danh sách phiếu | GET `/api/tickets` | HTTP 200, trả về danh sách | HTTP 200 OK, JSON chứa phiếu ticketId=1 | PASS | `docs/screenshots/TC01.png` |
-
-| TC02 | Happy Path | High | Chi tiết phiếu | GET `/api/tickets/1` | HTTP 200, trả về thông tin phiếu | HTTP 200 OK, JSON có ticketId=1, dữ liệu khớp TC01 | PASS | `docs/screenshots/TC02.png` |
-
-| TC03 | Happy Path | High | Tạo phiếu | POST `/api/tickets` với customerId=2, categoryId=1 và thông tin iPhone 13 hợp lệ | HTTP 201, tạo phiếu mới | HTTP 201 Created, ticketId=6, status=MOI_TIEP_NHAN | PASS | `docs/screenshots/TC03.png` |
-
-| TC04 | Happy Path | High | Cập nhật phiếu | PUT `/api/tickets/6` với categoryId=1, description mới, priority=TRUNG_BINH | HTTP 200, dữ liệu được cập nhật | HTTP 200 OK, ticketId=6, description và priority đã thay đổi đúng | PASS | `docs/screenshots/TC04.png` |
-
-| TC05 | Happy Path | High | Xóa phiếu | DELETE `/api/tickets/6` (phiếu thử nghiệm tạo ở TC03) | HTTP 204, phiếu bị xóa | HTTP 204 No Content, response body trống | PASS | `docs/screenshots/TC05.png` |
-
-| TC06 | Invalid Input | Medium | Phiếu không tồn tại | GET `/api/tickets/999999` | HTTP 404, thông báo không tìm thấy phiếu | HTTP 404 Not Found, thông báo "Khong tim thay phieu bao hanh" | PASS | `docs/screenshots/TC06.png` |
-
-| TC07 | Invalid Input | High | Thiếu dữ liệu bắt buộc | POST `/api/tickets` với customerId=2, categoryId=1, thiếu deviceName | HTTP 400, không tạo phiếu | HTTP 400 Bad Request, thông báo "Thong tin thiet bi va mo ta loi khong duoc de trong" | PASS | `docs/screenshots/TC07.png` |
-
-| TC08 | Boundary | High | Giới hạn description | POST `/api/tickets` với description dài 1000 và 1001 ký tự | 1000 ký tự: HTTP 201; 1001 ký tự: HTTP 400 | 1000 ký tự: HTTP 201 Created; 1001 ký tự: HTTP 400 Bad Request | PASS | `docs/screenshots/TC08-1000.png`, `docs/screenshots/TC08.png` |
-
-| TC09 | Invalid Input | Medium | Mức ưu tiên không hợp lệ | POST `/api/tickets` với customerId=2, categoryId=1, priority=RAT_CAO | HTTP 400, từ chối mức ưu tiên không hợp lệ | HTTP 400 Bad Request, thông báo "Muc uu tien khong hop le" | PASS | `docs/screenshots/TC09.png` |
-
-| TC10 | Security / Data Quality | High | Không tiết lộ stack trace | GET `/api/tickets/999999` sau khi sửa BUG-01 | HTTP 404, response không chứa Java stack trace | HTTP 404, JSON không còn trường trace | PASS (Retest) | `docs/screenshots/TC10.png` |
-
-| TC11 | Invalid Input | Medium | Serial Number để trống | POST `/api/tickets` với customerId=2, categoryId=1, serialNumber="" | HTTP 400, từ chối tạo phiếu | HTTP 400 Bad Request, JSON không chứa trace | PASS | `docs/screenshots/TC11.png` |
-
-| TC12 | Invalid Input | High | Customer ID không tồn tại | POST `/api/tickets` với customerId=999999, categoryId=1 | HTTP 404, từ chối tạo phiếu cho khách hàng không tồn tại | HTTP 404 Not Found, JSON không chứa trace | PASS | `docs/screenshots/TC12.png` |
+| TC01 | Happy Path | High | Danh sách phiếu — GET `/api/tickets` | HTTP 200, trả về danh sách | HTTP 200 OK, JSON chứa ticketId=1 | PASS | `docs/screenshots/TC01.png` |
+| TC02 | Happy Path | High | Chi tiết phiếu — GET `/api/tickets/1` | HTTP 200, trả về thông tin phiếu | HTTP 200 OK, JSON có ticketId=1, khớp TC01 | PASS | `docs/screenshots/TC02.png` |
+| TC03 | Happy Path | High | Tạo phiếu — POST `/api/tickets` với customerId=2, categoryId=1 và thông tin iPhone 13 hợp lệ | HTTP 201, tạo phiếu mới | HTTP 201 Created, ticketId=6, status=MOI_TIEP_NHAN | PASS | `docs/screenshots/TC03.png` |
+| TC04 | Happy Path | High | Cập nhật phiếu — PUT `/api/tickets/6` với categoryId=1, description mới, priority=TRUNG_BINH | HTTP 200, cập nhật dữ liệu | HTTP 200 OK, ticketId=6, description và priority được cập nhật | PASS | `docs/screenshots/TC04.png` |
+| TC05 | Happy Path | High | Xóa phiếu — DELETE `/api/tickets/6` | HTTP 204, xóa phiếu thử nghiệm | HTTP 204 No Content, response body trống | PASS | `docs/screenshots/TC05.png` |
+| TC06 | Invalid Input / Reproducibility | Medium | Phiếu không tồn tại — GET `/api/tickets/999999`; chạy lại cùng yêu cầu | HTTP 404, thông báo không tìm thấy, kết quả nhất quán | Cả hai lần đều HTTP 404, thông báo "Khong tim thay phieu bao hanh", không có stack trace | PASS (Retest) | `docs/screenshots/TC06.png`, `docs/screenshots/TC06-Retest.png` |
+| TC07 | Invalid Input | High | Thiếu deviceName — POST `/api/tickets` với customerId=2, categoryId=1 | HTTP 400, không tạo phiếu | HTTP 400, thông báo "Thong tin thiet bi va mo ta loi khong duoc de trong" | PASS | `docs/screenshots/TC07.png` |
+| TC08 | Boundary | High | Giới hạn description — POST `/api/tickets` với 1000 và 1001 ký tự | 1000 ký tự: HTTP 201; 1001 ký tự: HTTP 400 | 1000 ký tự: HTTP 201; 1001 ký tự: HTTP 400 | PASS | `docs/screenshots/TC08-1000.png`, `docs/screenshots/TC08.png` |
+| TC09 | Invalid Input | Medium | Priority không hợp lệ — POST `/api/tickets` với priority=RAT_CAO | HTTP 400, từ chối dữ liệu | HTTP 400, thông báo "Muc uu tien khong hop le" | PASS | `docs/screenshots/TC09.png` |
+| TC10 | Security / Data Quality | High | Không tiết lộ stack trace — GET `/api/tickets/999999` sau khi sửa BUG-01 | HTTP 404, không lộ Java stack trace | HTTP 404, JSON không chứa trường trace | PASS (Retest) | `docs/screenshots/TC10.png` |
+| TC11 | Invalid Input | Medium | Serial Number trống — POST `/api/tickets` với serialNumber="" | HTTP 400, từ chối tạo phiếu | HTTP 400 Bad Request, JSON không chứa trace | PASS | `docs/screenshots/TC11.png` |
+| TC12 | Invalid Input | High | Customer ID không tồn tại — POST `/api/tickets` với customerId=999999 | HTTP 404, từ chối tạo phiếu | HTTP 404 Not Found, JSON không chứa trace | PASS | `docs/screenshots/TC12.png` |
 
 \## 3.1. Kiểm thử tái lập (Reproducibility)
 
